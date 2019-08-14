@@ -1,0 +1,7 @@
+.background-banner{
+    background-image: url("../images/festival.jpg");
+    margin-bottom: 1em;
+    border: 1px solid black;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

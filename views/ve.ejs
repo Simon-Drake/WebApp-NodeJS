@@ -1,0 +1,113 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Events PWA</title>
+        <link rel="stylesheet" href="/styles/bootstrap.css">
+        <link rel="stylesheet" href="/styles/custom-style.css">
+        <link rel="stylesheet" type="text/css" href="/styles/inline.css">
+
+        <!-- TODO add manifest here -->
+        <link rel="manifest" href="/manifest.json">
+        <!-- Add to home screen for Safari on iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+        <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+        <meta name="msapplication-TileColor" content="#2F3BA2">
+        <script src="/scripts/capture.js"></script>
+        <script src="/scripts/jquery.min.js"></script>
+        <script src="/scripts/idb.js"></script>
+        <script src="/scripts/app.js"></script>
+        <script src="/scripts/database.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="/scripts/bootstrap.min.js"></script>
+    </head>
+    <body onload="initEventApp('view_event')">
+
+    <div class="offline_div" id="offline_div" style="display: none">You are offline</div>
+    <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/events"><strong>Selfie by Fame</strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/events"><b>Events</b><span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/create_event"><b>Create Event</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><b>Logout</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        .container-main {
+            margin-top: 25px;
+        }
+        canvas {
+            border: 1px solid #333;
+        }
+    </style>
+
+    <div class="jumbotron background-banner text-center">
+        <div id="results" style="text-align: center">
+        </div>
+        <div class="btn btn-secondary">
+            <button onclick="displayUserStoryForm()">Create user story for this event</button>
+        </div>
+        <br>
+        <br>
+        <div id="user_story" class="align-items-center" style="display: none">
+            <div class="card align-items-center mx-auto" style="max-width:500px">
+                <div class="card-body align-items-center mx-auto">
+                    <div class="offline_div" id="offline_div" style="display: none">You are offline</div>
+                    <form id="xForm" class="bg-light" onsubmit="createUserStory()">
+                        <h6 class="card-header text-center bg-dark text-white"><strong>Create User Story</strong></h6>
+                        <br>
+                        <div class="form-group text-center">
+                            <h6 class="card-subtitle mb-2">Title</h6>
+                            <input type="text" name="title" id="title" placeholder="Title">
+                        </div>
+                        <div class="form-group text-center">
+                            <h6 class="card-subtitle mb-2">Description</h6>
+                            <input type="text" name="description" id="description" placeholder="description">
+                        </div>
+                        <div class="contentarea align-items-center mx-auto ">
+                            <div class="camera container container-main">
+                                <video id="video">Video stream not available.</video>
+                                <br>
+                                <button id="startbutton" class="btn btn-primary">Take photo</button>
+                                <br>
+                                <br>
+                                <canvas id="canvas" style="max-width:800px; max-height:480px">
+                                    <div class="output">
+                                        <img id="photo" alt="The screen capture will appear in this box.">
+                                    </div>
+                                </canvas>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" name="g" value="Create" id="g" class="btn btn-primary my-2">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="results_us" style="text-align: center">
+        </div>
+    </div>
+    </body>
+</html>
